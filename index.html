@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стильный счётчик (в одном файле)</title>
+    <style>
+        /* Подключаем современный шрифт */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 40px;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .title {
+            color: white;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .counter-value {
+            font-size: 8rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            line-height: 1;
+            margin: 0.5rem 0 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-bottom: 1.8rem;
+        }
+
+        .btn {
+            width: 75px;
+            height: 75px;
+            border: none;
+            border-radius: 30px;
+            font-size: 3rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-minus {
+            background: linear-gradient(145deg, #ff416c, #ff4b2b);
+        }
+
+        .btn-plus {
+            background: linear-gradient(145deg, #1e9600, #fff200, #ff0000);
+            background-size: 200% 200%;
+            background-position: left;
+        }
+
+        .btn-plus:hover {
+            background-position: right;
+        }
+
+        .btn-minus:hover {
+            background: linear-gradient(145deg, #ff4b2b, #ff416c);
+        }
+
+        .btn:active {
+            transform: scale(0.9);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .reset-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            font-size: 1.2rem;
+            padding: 0.6rem 2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            transition: all 0.2s;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .reset-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            border-color: white;
+            transform: translateY(-2px);
+        }
+
+        .reset-btn:active {
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1 class="title">Счётчик</h1>
+        <div class="counter-value" id="counter">0</div>
+        <div class="button-group">
+            <button class="btn btn-minus" id="decrementBtn" aria-label="Уменьшить">–</button>
+            <button class="btn btn-plus" id="incrementBtn" aria-label="Увеличить">+</button>
+        </div>
+        <button class="reset-btn" id="resetBtn">Сброс</button>
+    </div>
+
+    <script>
+        // Простой JS для работы счётчика (без внешнего файла)
+        let count = 0;
+        const counterElement = document.getElementById('counter');
+        const incrementBtn = document.getElementById('incrementBtn');
+        const decrementBtn = document.getElementById('decrementBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        function updateCounter() {
+            counterElement.textContent = count;
+        }
+
+        incrementBtn.addEventListener('click', () => {
+            count++;
+            updateCounter();
+        });
+
+        decrementBtn.addEventListener('click', () => {
+            count--;
+            updateCounter();
+        });
+
+        resetBtn.addEventListener('click', () => {
+            count = 0;
+            updateCounter();
+        });
+    </script>
+</body>
+</html>
