@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простой счётчик</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .counter-container {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .counter-value {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        button {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        button.minus {
+            background-color: #dc3545;
+        }
+        button.minus:hover {
+            background-color: #b02a37;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <div class="counter-value" id="counter">0</div>
+        <div class="button-group">
+            <button class="minus" onclick="decrement()">–</button>
+            <button onclick="increment()">+</button>
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        const counterElement = document.getElementById('counter');
+
+        function increment() {
+            count++;
+            counterElement.textContent = count;
+        }
+
+        function decrement() {
+            count--;
+            counterElement.textContent = count;
+        }
+    </script>
+</body>
+</html>
